@@ -1,0 +1,46 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  font-family: Arial, sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background: url("../img/floresta-batalha.png") center/cover no-repeat;
+}
+
+header {
+  text-align: center;
+  padding: 20px 0;
+}
+header h1 {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 20px;
+  color: beige;
+  background: rgba(0,0,0,0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+main {
+  flex: 1;
+  position: relative;
+}
+
+footer {
+  background: rgb(0,14,8);
+  color: rgba(255,255,255,0.548);
+  padding: 3px;
+  text-align: center;
+  font-size: 10px;
+}
+
+/*Personagens*/
+.personagem {
+  position: absolute;
+  bottom: 0;
+}
+.gorila { width: 300px; left: 4%;  }
+.humano { width: 220px; right: 4%; }
