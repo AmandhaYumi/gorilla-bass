@@ -158,3 +158,22 @@ const defender = () => {
   GGDefesa = true;
   mostrarLog("🛡️ O GG se defendeu");
 };
+
+// Cura
+const curar = () => {
+  if (divResultado.style.display === "block") return;
+
+  if (limiteCura <= 0) {
+    mostrarLog("⚠️ O GG não pode mais curar!");
+    return;
+  }
+
+  if (vidaGG < vidaMaxima) {
+    vidaGG = Math.min(vidaMaxima, vidaGG + 5);
+    limiteCura--;
+    mostrarLog("💚 O GG ganhou +5 de vida.");
+    atualizarTela();
+  } else {
+    mostrarLog("💚 O GG está com vida cheia.");
+  }
+};
