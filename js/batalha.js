@@ -84,3 +84,17 @@ const atualizarTela = () => {
       audioDefesa.play();
     });
   }
+
+  // Log
+  const mostrarLog = (texto) => {
+  const hora = new Date().toLocaleTimeString();
+  const p = document.createElement("p");
+  p.textContent = `[${hora}] ${texto}`;
+  divLog.appendChild(p);
+  divLog.scrollTop = divLog.scrollHeight;
+  divLog.style.display = "block";
+
+  setTimeout(() => {
+    p.remove();
+  }, 1000);
+};
