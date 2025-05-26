@@ -97,4 +97,56 @@ const atualizarTela = () => {
   setTimeout(() => {
     p.remove();
   }, 1000);
+
+  // Atacar 
+  const atacar = () => {
+  if (divResultado.style.display === "block") return;
+
+  if (!podeAtacar) {
+    mostrarLog("⏳ O GG está se recuperando!");
+    return;
+  }
+
+  let eliminados = 0;
+
+  for (let i = 0; i < BG.length && eliminados < 5; i++) {
+    if (BG[i]) {
+      BG[i] = false;
+      eliminados++;
+    }
+  }
+
+  BGRestantes -= eliminados;
+
+  mostrarLog(🦍 O GG atacou e eliminou ${eliminados} bigodinho(s)!);
+
+  atualizarTela();
+  fimDeJogo();
+
+  podeAtacar = false;
+  setTimeout(() => {
+    podeAtacar = true;
+    mostrarLog("🦍 O GG está pronto para atacar novamente!");
+  }, vaiAtacar);
+
+  const ataqueBG = () => {
+  if (divResultado.style.display === "block" || BGRestantes === 0) return;
+
+  let dano = Math.floor(Math.random() * 8) + 3;
+
+  if (GGDefesa) {
+    dano = Math.floor(dano / 2);
+    GGDefesa = false;
+    mostrarLog("🛡️ O GG se defendeu!");
+  } else {
+    mostrarLog(👥 Os bigodinhos abracadabraram e causaram ${dano} de dano no GG.);
+  }
+
+  vidaGG -= dano;
+  if (vidaGG < 0) vidaGG = 0;
+
+  atualizarTela();
+  fimDeJogo();
+};
+};
 };
