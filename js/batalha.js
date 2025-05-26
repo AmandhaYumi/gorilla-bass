@@ -51,3 +51,36 @@ const atualizarTela = () => {
   barraBG.style.width = `${(BGRestantes / totalBG) * 100}%`;
   salvarProgresso();
 };
+
+// Som de ataque
+  const botaoAtaque = document.getElementById("botaoSomAtaque");
+  const audioAtaque = document.getElementById("meuAudioAtaque");
+  if(botaoAtaque && audioAtaque) {
+    botaoAtaque.addEventListener("click", () => {
+      atacar();
+      audioAtaque.currentTime = 0;
+      audioAtaque.play();
+    });
+  }
+
+  // Som de cura
+  const botaoCura = document.getElementById("botaoSomCura");
+  const audioCura = document.getElementById("meuAudioCura");
+  if(botaoCura && audioCura) {
+    botaoCura.addEventListener("click", () => {
+      curar();
+      audioCura.currentTime = 0;
+      audioCura.play();
+    });
+  }
+
+  // Som de defesa
+  const botaoDefesa = document.getElementById("botaoSomDefesa");
+  const audioDefesa = document.getElementById("meuAudioDefesa");
+  if(botaoDefesa && audioDefesa) {
+    botaoDefesa.addEventListener("click", () => {
+      defender();
+      audioDefesa.currentTime = 0;
+      audioDefesa.play();
+    });
+  }
