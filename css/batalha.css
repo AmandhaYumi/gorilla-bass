@@ -90,3 +90,26 @@ footer {
   transition: width 0.3s ease;
   border-radius: 10px 0 0 10px;
 }
+
+/*Botões*/
+#acoes {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+#acoes button {
+  padding: 18px 28px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background: #1f1f1f;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+#acoes button:hover { background: #444; transform: scale(1.05); }
+#acoes button:active { transform: scale(0.95); }
