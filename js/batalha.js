@@ -150,3 +150,11 @@ const atualizarTela = () => {
 };
 };
 };
+
+// Defesa
+const defender = () => {
+  if (divResultado.style.display === "block") return;
+
+  GGDefesa = true;
+  mostrarLog("🛡️ O GG se defendeu");
+};
