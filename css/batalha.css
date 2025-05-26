@@ -143,3 +143,32 @@ footer {
   font-size: 15px;
 }
 
+/*Final*/
+#resultadoFinal {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.85);
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0,0,0,0.6);
+  display: none;
+  max-width: 250px;
+  width: 80%;
+}
+#resultadoFinal h2 { margin-bottom: 10px; }
+#resultadoFinal button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  background: #136916;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+#resultadoFinal button:hover { background: #083b0a; }
