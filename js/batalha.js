@@ -19,7 +19,7 @@ const spanAtaques = document.getElementById("ataquesRestantes");
 const barraVida = document.getElementById("barraVida");
 const barraBG = document.getElementById("barraBG");
 
-/*Progesso*/
+/*Progresso*/
 const salvarProgresso = () => {
   const progresso = {
     vidaGG,
@@ -44,7 +44,7 @@ const carregarProgresso = () => {
 const atualizarTela = () => {
   spanVida.textContent = vidaGG;
   spanBG.textContent = BGRestantes;
-  if(spanAtaques) { 
+  if (spanAtaques) { 
     spanAtaques.textContent = "";  
   }
   barraVida.style.width = `${(vidaGG / vidaMaxima) * 100}%`;
@@ -53,40 +53,40 @@ const atualizarTela = () => {
 };
 
 // Som de ataque
-  const botaoAtaque = document.getElementById("botaoSomAtaque");
-  const audioAtaque = document.getElementById("meuAudioAtaque");
-  if(botaoAtaque && audioAtaque) {
-    botaoAtaque.addEventListener("click", () => {
-      atacar();
-      audioAtaque.currentTime = 0;
-      audioAtaque.play();
-    });
-  }
+const botaoAtaque = document.getElementById("botaoSomAtaque");
+const audioAtaque = document.getElementById("meuAudioAtaque");
+if (botaoAtaque && audioAtaque) {
+  botaoAtaque.addEventListener("click", () => {
+    atacar();
+    audioAtaque.currentTime = 0;
+    audioAtaque.play();
+  });
+}
 
-  // Som de cura
-  const botaoCura = document.getElementById("botaoSomCura");
-  const audioCura = document.getElementById("meuAudioCura");
-  if(botaoCura && audioCura) {
-    botaoCura.addEventListener("click", () => {
-      curar();
-      audioCura.currentTime = 0;
-      audioCura.play();
-    });
-  }
+// Som de cura
+const botaoCura = document.getElementById("botaoSomCura");
+const audioCura = document.getElementById("meuAudioCura");
+if (botaoCura && audioCura) {
+  botaoCura.addEventListener("click", () => {
+    curar();
+    audioCura.currentTime = 0;
+    audioCura.play();
+  });
+}
 
-  // Som de defesa
-  const botaoDefesa = document.getElementById("botaoSomDefesa");
-  const audioDefesa = document.getElementById("meuAudioDefesa");
-  if(botaoDefesa && audioDefesa) {
-    botaoDefesa.addEventListener("click", () => {
-      defender();
-      audioDefesa.currentTime = 0;
-      audioDefesa.play();
-    });
-  }
+// Som de defesa
+const botaoDefesa = document.getElementById("botaoSomDefesa");
+const audioDefesa = document.getElementById("meuAudioDefesa");
+if (botaoDefesa && audioDefesa) {
+  botaoDefesa.addEventListener("click", () => {
+    defender();
+    audioDefesa.currentTime = 0;
+    audioDefesa.play();
+  });
+}
 
-  // Log
-  const mostrarLog = (texto) => {
+// Log
+const mostrarLog = (texto) => {
   const hora = new Date().toLocaleTimeString();
   const p = document.createElement("p");
   p.textContent = `[${hora}] ${texto}`;
@@ -97,9 +97,10 @@ const atualizarTela = () => {
   setTimeout(() => {
     p.remove();
   }, 1000);
+};
 
-  // Atacar 
-  const atacar = () => {
+// Atacar 
+const atacar = () => {
   if (divResultado.style.display === "block") return;
 
   if (!podeAtacar) {
@@ -118,7 +119,7 @@ const atualizarTela = () => {
 
   BGRestantes -= eliminados;
 
-  mostrarLog(🦍 O GG atacou e eliminou ${eliminados} bigodinho(s)!);
+  mostrarLog(`🦍 O GG atacou e eliminou ${eliminados} bigodinho(s)!`);
 
   atualizarTela();
   fimDeJogo();
@@ -128,8 +129,10 @@ const atualizarTela = () => {
     podeAtacar = true;
     mostrarLog("🦍 O GG está pronto para atacar novamente!");
   }, vaiAtacar);
+};
 
-  const ataqueBG = () => {
+// Ataque dos BG
+const ataqueBG = () => {
   if (divResultado.style.display === "block" || BGRestantes === 0) return;
 
   let dano = Math.floor(Math.random() * 8) + 3;
@@ -139,7 +142,7 @@ const atualizarTela = () => {
     GGDefesa = false;
     mostrarLog("🛡️ O GG se defendeu!");
   } else {
-    mostrarLog(👥 Os bigodinhos abracadabraram e causaram ${dano} de dano no GG.);
+    mostrarLog(`👥 Os bigodinhos abracadabraram e causaram ${dano} de dano no GG.`);
   }
 
   vidaGG -= dano;
@@ -147,8 +150,6 @@ const atualizarTela = () => {
 
   atualizarTela();
   fimDeJogo();
-};
-};
 };
 
 // Defesa
@@ -177,3 +178,45 @@ const curar = () => {
     mostrarLog("💚 O GG está com vida cheia.");
   }
 };
+
+// Fim
+const fimDeJogo = () => {
+  if (vidaGG <= 0) {
+    mensagemFinal.textContent = "❌ O GG perdeu...";
+    divResultado.style.display = "block";
+    mostrarLog("❌ O GG perdeu...");
+    localStorage.removeItem("progressoGG");
+  } else if (BGRestantes <= 0) {
+    mensagemFinal.textContent = "🏆 O GG venceu!";
+    divResultado.style.display = "block";
+    mostrarLog("🏆 O GG venceu!");
+    localStorage.removeItem("progressoGG");
+  }
+};
+
+const reiniciarJogo = () => {
+  vidaGG = vidaMaxima;
+  BG = Array(totalBG).fill(true);
+  BGRestantes = totalBG;
+  GGDefesa = false;
+  limiteCura = 10;
+  divResultado.style.display = "none";
+  divLog.innerHTML = "";
+  divLog.style.display = "block";
+  podeAtacar = true;
+  salvarProgresso();
+  atualizarTela();
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  carregarProgresso();
+  atualizarTela();
+
+  setInterval(ataqueBG, 2000);
+
+  setInterval(() => {
+    if (podeAtacar && BGRestantes > 0 && divResultado.style.display !== "block") {
+      atacar();
+    }
+  }, 2000);
+});
