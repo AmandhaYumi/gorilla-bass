@@ -1,0 +1,59 @@
+/*Estrutura*/
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/start.png");
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+header h1 {
+  display: inline-block;
+  color: beige;
+  background-color: rgba(0,0,0,0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  margin: 0;
+}
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  background: rgb(0,14,8);
+  color: rgba(255,255,255,0.548);
+  padding: 3px;
+  text-align: center;
+  font-size: 10px;
+}
+#start{
+  color: white;
+  text-align: center;
+  width: 300px;
+}
+/*Botão*/
+#botao {
+  width: 230px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+#botao:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+  cursor: pointer;
+}
